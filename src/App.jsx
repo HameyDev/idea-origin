@@ -30,7 +30,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/explore" element={<Explore />} />
+        <Route path="/explore-discovery" element={<Explore />} />
         <Route path="/scientist/:id" element={<ScientistProfile />} />
         <Route path="/discovery/:id" element={<DiscoveryStory />} />
         <Route path="/timeline" element={<Timeline />} />

@@ -1,62 +1,106 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import NavLink from "./NavLink";
+import DropdownLink from "./DropdownLink";
+import MobileLink from "./MobileLink";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isExploreOpen, setIsExploreOpen] = useState(false);
 
   return (
-    <nav className="bg-gradient-to-r from-purple-800 to-pink-700 text-white shadow-md">
+    <nav className="sticky top-0 z-50 relative bg-gradient-to-r from-slate-950 via-teal-950 to-slate-950 backdrop-blur-xl border-b border-white/10 shadow-lg">
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        
-        {/* Logo */}
-        <div className="text-2xl font-bold">
-          <Link to="/">🌟 Discovery</Link>
-        </div>
+
+        <Link to="/" className="text-2xl font-extrabold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-emerald-400">
+          ✨ IdeaOrigin
+        </Link>
 
         {/* Desktop Links */}
-        <div className="hidden md:flex gap-6">
-          <Link className="hover:text-yellow-300 transition-colors" to="/">Home</Link>
-          <Link className="hover:text-yellow-300 transition-colors" to="/explore">Explore</Link>
-          <Link className="hover:text-yellow-300 transition-colors" to="/timeline">Timeline</Link>
-          <Link className="hover:text-yellow-300 transition-colors" to="/about">About</Link>
-          <Link className="hover:text-yellow-300 transition-colors" to="/auth">Login</Link>
-          <Link className="hover:text-yellow-300 transition-colors" to="/dashboard">Dashboard</Link>
+        <div className="hidden md:flex items-center gap-8">
+
+          <NavLink to="/">Home</NavLink>
+
+          {/* Explore Dropdown (CLICKABLE) */}
+          <div className="relative">
+
+            <button onClick={() => setIsExploreOpen(!isExploreOpen)} className="flex items-center gap-1 text-gray-200 hover:text-cyan-400 transition">
+              Explore ▾
+            </button>
+
+            {isExploreOpen && (
+              <div className="absolute top-full mt-3 w-52 rounded-2xl bg-slate-900/95 backdrop-blur-xl border border-white/10 shadow-xl overflow-hidden">
+
+                <DropdownLink to="/explore/scientists" onClick={() => setIsExploreOpen(false)}>
+                  Scientists
+                </DropdownLink>
+                <DropdownLink to="/explore-discovery" onClick={() => setIsExploreOpen(false)}>
+                  Discoveries
+                </DropdownLink>
+
+              </div>
+            )}
+
+          </div>
+
+          <NavLink to="/timeline">Timeline</NavLink>
+          <NavLink to="/about">About</NavLink>
+          <NavLink to="/auth">Login</NavLink>
+
+          <Link to="/dashboard" className="px-4 py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-600 text-white font-semibold shadow-md hover:scale-105 transition-transform">
+            Dashboard
+          </Link>
+
         </div>
 
-        {/* Mobile Hamburger */}
+        {/* Mobile Button */}
         <div className="md:hidden">
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="focus:outline-none"
-          >
-            {isOpen ? (
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none"
-                   viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                      d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            ) : (
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none"
-                   viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                      d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            )}
+          <button onClick={() => setIsOpen(!isOpen)} className="text-xl text-gray-200">
+            {isOpen ? "✖" : "☰"}
           </button>
         </div>
       </div>
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden bg-purple-800 text-white px-6 pb-4 space-y-3">
-          <Link className="block hover:text-yellow-300 transition-colors" to="/" onClick={() => setIsOpen(false)}>Home</Link>
-          <Link className="block hover:text-yellow-300 transition-colors" to="/explore" onClick={() => setIsOpen(false)}>Explore</Link>
-          <Link className="block hover:text-yellow-300 transition-colors" to="/timeline" onClick={() => setIsOpen(false)}>Timeline</Link>
-          <Link className="block hover:text-yellow-300 transition-colors" to="/about" onClick={() => setIsOpen(false)}>About</Link>
-          <Link className="block hover:text-yellow-300 transition-colors" to="/auth" onClick={() => setIsOpen(false)}>Login</Link>
-          <Link className="block hover:text-yellow-300 transition-colors" to="/dashboard" onClick={() => setIsOpen(false)}>Dashboard</Link>
+        <div className="md:hidden absolute top-full left-0 w-full bg-slate-950/95 backdrop-blur-xl px-6 pb-6 space-y-4 border-t border-white/10 shadow-2xl">
+
+          <MobileLink to="/" setIsOpen={setIsOpen}>Home</MobileLink>
+
+          {/* Mobile Explore */}
+          <div>
+
+            <button onClick={() => setIsExploreOpen(!isExploreOpen)} className="w-full flex justify-between items-center text-gray-200 py-2 hover:text-cyan-400">
+              Explore
+              <span>{isExploreOpen ? "▲" : "▼"}</span>
+            </button>
+
+            {isExploreOpen && (
+              <div className="ml-4 mt-2 space-y-2">
+                <MobileLink to="/explore/scientists" setIsOpen={setIsOpen}>
+                  Scientists
+                </MobileLink>
+                <MobileLink to="/explore/discoveries" setIsOpen={setIsOpen}>
+                  Discoveries
+                </MobileLink>
+              </div>
+            )}
+          </div>
+
+          <MobileLink to="/timeline" setIsOpen={setIsOpen}>Timeline</MobileLink>
+          <MobileLink to="/about" setIsOpen={setIsOpen}>About</MobileLink>
+          <MobileLink to="/auth" setIsOpen={setIsOpen}>Login</MobileLink>
+          <MobileLink to="/dashboard" setIsOpen={setIsOpen}>Dashboard</MobileLink>
         </div>
       )}
     </nav>
   );
 }
+
+
+
+
+
+
+
+
