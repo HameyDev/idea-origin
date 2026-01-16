@@ -1,11 +1,12 @@
-export const scientists = {
+export const scientistsProfile = {
   einstein: {
     name: "Albert Einstein",
     field: "Theoretical Physics",
     born: "1879",
     died: "1955",
     bio: "Albert Einstein revolutionized physics with his theory of relativity, reshaping our understanding of space, time, and energy.",
-    image: "https://upload.wikimedia.org/wikipedia/commons/d/d3/Albert_Einstein_Head.jpg",
+    image:
+      "/scientists/einstein.jpeg",
     discoveries: [
       { id: "relativity", title: "Theory of Relativity", year: "1905" },
       { id: "photoelectric", title: "Photoelectric Effect", year: "1905" },
@@ -28,7 +29,7 @@ export const scientists = {
     born: "1856",
     died: "1943",
     bio: "Nikola Tesla was a visionary inventor who shaped modern electricity with AC power systems.",
-    image: "https://upload.wikimedia.org/wikipedia/commons/d/d4/N.Tesla.JPG",
+    image: "/scientists/tesla.jpeg",
     discoveries: [
       { id: "ac", title: "AC Electricity", year: "1890" },
       { id: "wireless", title: "Wireless Energy", year: "1893" },
@@ -38,10 +39,7 @@ export const scientists = {
       "Over 300 patents",
       "Predicted radio technology",
     ],
-    quotes: [
-      "The future is mine.",
-      "Think in terms of energy and vibration.",
-    ],
+    quotes: ["The future is mine.", "Think in terms of energy and vibration."],
     funFacts: ["Had photographic memory.", "Never married."],
   },
 
@@ -51,7 +49,8 @@ export const scientists = {
     born: "1643",
     died: "1727",
     bio: "Isaac Newton laid the foundation of classical physics and modern mathematics.",
-    image: "https://upload.wikimedia.org/wikipedia/commons/d/d1/Sir_Isaac_Newton_%281642-1727%29.jpg",
+    image:
+      "/scientists/newton.jpeg",
     discoveries: [
       { id: "gravity", title: "Law of Gravity", year: "1687" },
       { id: "motion", title: "Laws of Motion", year: "1687" },
@@ -61,10 +60,7 @@ export const scientists = {
       "Knighted by Queen Anne",
       "Published Principia",
     ],
-    quotes: [
-      "Standing on the shoulders of giants.",
-      "What we know is a drop.",
-    ],
+    quotes: ["Standing on the shoulders of giants.", "What we know is a drop."],
     funFacts: ["Practiced alchemy.", "Never married."],
   },
 
@@ -74,18 +70,14 @@ export const scientists = {
     born: "1867",
     died: "1934",
     bio: "Marie Curie pioneered research on radioactivity and became the first woman to win a Nobel Prize.",
-    image: "https://upload.wikimedia.org/wikipedia/commons/6/69/Marie_Curie_c1920.jpg",
+    image:
+      "/scientists/marie-curie.jpeg",
     discoveries: [
       { id: "radium", title: "Radium", year: "1898" },
       { id: "polonium", title: "Polonium", year: "1898" },
     ],
-    achievements: [
-      "Two Nobel Prizes",
-      "First female professor at Sorbonne",
-    ],
-    quotes: [
-      "Nothing in life is to be feared.",
-    ],
+    achievements: ["Two Nobel Prizes", "First female professor at Sorbonne"],
+    quotes: ["Nothing in life is to be feared."],
     funFacts: ["Her notebooks are still radioactive."],
   },
 
@@ -95,16 +87,13 @@ export const scientists = {
     born: "1809",
     died: "1882",
     bio: "Charles Darwin developed the theory of evolution by natural selection.",
-    image: "https://upload.wikimedia.org/wikipedia/commons/2/2e/Charles_Darwin_1881.jpg",
+    image:
+      "/scientists/darwin.jpeg",
     discoveries: [
       { id: "evolution", title: "Theory of Evolution", year: "1859" },
     ],
-    achievements: [
-      "Published On the Origin of Species",
-    ],
-    quotes: [
-      "A man who dares to waste one hour of time...",
-    ],
+    achievements: ["Published On the Origin of Species"],
+    quotes: ["A man who dares to waste one hour of time..."],
     funFacts: ["Loved collecting beetles."],
   },
 
@@ -114,16 +103,11 @@ export const scientists = {
     born: "1564",
     died: "1642",
     bio: "Galileo supported the heliocentric model and transformed astronomy with telescopic discoveries.",
-    image: "https://upload.wikimedia.org/wikipedia/commons/6/6e/Galileo_Galilei_2.jpg",
-    discoveries: [
-      { id: "moons", title: "Moons of Jupiter", year: "1610" },
-    ],
-    achievements: [
-      "Father of modern science",
-    ],
-    quotes: [
-      "And yet it moves.",
-    ],
+    image:
+      "/scientists/Galileo.jpeg",
+    discoveries: [{ id: "moons", title: "Moons of Jupiter", year: "1610" }],
+    achievements: ["Father of modern science"],
+    quotes: ["And yet it moves."],
     funFacts: ["Was placed under house arrest."],
   },
 
@@ -133,16 +117,13 @@ export const scientists = {
     born: "1791",
     died: "1867",
     bio: "Michael Faraday discovered electromagnetic induction, shaping modern electricity.",
-    image: "https://upload.wikimedia.org/wikipedia/commons/8/88/Michael_Faraday_2.jpg",
+    image:
+      "/scientists/faraday.jpeg",
     discoveries: [
       { id: "induction", title: "Electromagnetic Induction", year: "1831" },
     ],
-    achievements: [
-      "Father of electric motor",
-    ],
-    quotes: [
-      "Nothing is too wonderful to be true.",
-    ],
+    achievements: ["Father of electric motor"],
+    quotes: ["Nothing is too wonderful to be true."],
     funFacts: ["Had little formal education."],
   },
 
@@ -152,16 +133,13 @@ export const scientists = {
     born: "1822",
     died: "1884",
     bio: "Gregor Mendel discovered the basic laws of inheritance.",
-    image: "https://upload.wikimedia.org/wikipedia/commons/2/26/Gregor_Mendel.jpg",
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/2/26/Gregor_Mendel.jpg",
     discoveries: [
       { id: "genetics", title: "Laws of Inheritance", year: "1866" },
     ],
-    achievements: [
-      "Father of Genetics",
-    ],
-    quotes: [
-      "My scientific studies...",
-    ],
+    achievements: ["Father of Genetics"],
+    quotes: ["My scientific studies..."],
     funFacts: ["Was a monk."],
   },
 
@@ -171,16 +149,11 @@ export const scientists = {
     born: "1847",
     died: "1931",
     bio: "Thomas Edison invented the phonograph and improved the light bulb.",
-    image: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Thomas_Edison2.jpg",
-    discoveries: [
-      { id: "bulb", title: "Electric Light Bulb", year: "1879" },
-    ],
-    achievements: [
-      "Over 1,000 patents",
-    ],
-    quotes: [
-      "Genius is one percent inspiration...",
-    ],
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/9/9d/Thomas_Edison2.jpg",
+    discoveries: [{ id: "bulb", title: "Electric Light Bulb", year: "1879" }],
+    achievements: ["Over 1,000 patents"],
+    quotes: ["Genius is one percent inspiration..."],
     funFacts: ["Was partially deaf."],
   },
 
@@ -191,15 +164,9 @@ export const scientists = {
     died: "1962",
     bio: "Niels Bohr developed the modern model of the atom.",
     image: "https://upload.wikimedia.org/wikipedia/commons/6/6d/Niels_Bohr.jpg",
-    discoveries: [
-      { id: "atom", title: "Bohr Model of Atom", year: "1913" },
-    ],
-    achievements: [
-      "Nobel Prize in Physics (1922)",
-    ],
-    quotes: [
-      "An expert is a person...",
-    ],
+    discoveries: [{ id: "atom", title: "Bohr Model of Atom", year: "1913" }],
+    achievements: ["Nobel Prize in Physics (1922)"],
+    quotes: ["An expert is a person..."],
     funFacts: ["Loved soccer."],
   },
 
@@ -209,16 +176,11 @@ export const scientists = {
     born: "1912",
     died: "1954",
     bio: "Alan Turing laid the foundations of computer science and artificial intelligence.",
-    image: "https://upload.wikimedia.org/wikipedia/commons/a/a1/Alan_Turing_Aged_16.jpg",
-    discoveries: [
-      { id: "ai", title: "Turing Machine", year: "1936" },
-    ],
-    achievements: [
-      "Cracked Enigma code",
-    ],
-    quotes: [
-      "We can only see a short distance ahead...",
-    ],
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/a/a1/Alan_Turing_Aged_16.jpg",
+    discoveries: [{ id: "ai", title: "Turing Machine", year: "1936" }],
+    achievements: ["Cracked Enigma code"],
+    quotes: ["We can only see a short distance ahead..."],
     funFacts: ["Loved long-distance running."],
   },
 
@@ -228,16 +190,13 @@ export const scientists = {
     born: "1815",
     died: "1852",
     bio: "Ada Lovelace wrote the first computer algorithm.",
-    image: "https://upload.wikimedia.org/wikipedia/commons/a/a4/Ada_Lovelace_portrait.jpg",
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/a/a4/Ada_Lovelace_portrait.jpg",
     discoveries: [
       { id: "programming", title: "First Algorithm", year: "1843" },
     ],
-    achievements: [
-      "First computer programmer",
-    ],
-    quotes: [
-      "The Analytical Engine weaves algebraic patterns.",
-    ],
+    achievements: ["First computer programmer"],
+    quotes: ["The Analytical Engine weaves algebraic patterns."],
     funFacts: ["Was a poet’s daughter."],
   },
 
@@ -247,16 +206,13 @@ export const scientists = {
     born: "1942",
     died: "2018",
     bio: "Stephen Hawking explored black holes and the origin of the universe.",
-    image: "https://upload.wikimedia.org/wikipedia/commons/e/eb/Stephen_Hawking.StarChild.jpg",
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/e/eb/Stephen_Hawking.StarChild.jpg",
     discoveries: [
       { id: "radiation", title: "Hawking Radiation", year: "1974" },
     ],
-    achievements: [
-      "Author of A Brief History of Time",
-    ],
-    quotes: [
-      "Intelligence is the ability to adapt to change.",
-    ],
+    achievements: ["Author of A Brief History of Time"],
+    quotes: ["Intelligence is the ability to adapt to change."],
     funFacts: ["Lived with ALS for 55 years."],
   },
 
@@ -266,16 +222,11 @@ export const scientists = {
     born: "1822",
     died: "1895",
     bio: "Louis Pasteur discovered germ theory and developed vaccines.",
-    image: "https://upload.wikimedia.org/wikipedia/commons/3/3d/Louis_Pasteur.jpg",
-    discoveries: [
-      { id: "vaccines", title: "Rabies Vaccine", year: "1885" },
-    ],
-    achievements: [
-      "Father of microbiology",
-    ],
-    quotes: [
-      "Chance favors the prepared mind.",
-    ],
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/3/3d/Louis_Pasteur.jpg",
+    discoveries: [{ id: "vaccines", title: "Rabies Vaccine", year: "1885" }],
+    achievements: ["Father of microbiology"],
+    quotes: ["Chance favors the prepared mind."],
     funFacts: ["Saved many lives with vaccines."],
   },
 };

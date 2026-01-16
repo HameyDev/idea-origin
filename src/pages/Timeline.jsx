@@ -1,18 +1,11 @@
 import { Link } from "react-router-dom";
+import { timelineData } from "../data/timelineData";
 
 export default function Timeline() {
-  const timelineData = [
-    { year: "1687", title: "Law of Gravity", scientist: "Isaac Newton", id: "gravity", desc: "Newton publishes Principia, defining gravity and motion." },
-    { year: "1890", title: "AC Electricity", scientist: "Nikola Tesla", id: "ac", desc: "Tesla develops AC power systems for modern electricity." },
-    { year: "1905", title: "Theory of Relativity", scientist: "Albert Einstein", id: "relativity", desc: "Einstein changes how we understand space and time." },
-    { year: "1928", title: "Penicillin", scientist: "Alexander Fleming", id: "penicillin", desc: "Discovery of the first true antibiotic." },
-    { year: "1953", title: "DNA Structure", scientist: "Watson & Crick", id: "dna", desc: "Reveals the code of life." },
-  ];
 
   return (
-    <div className="bg-gradient-to-b from-black via-[#14132A] to-black text-white min-h-screen">
+    <div className="bg-gradient-to-br from-slate-950 via-[#0f0f22] to-slate-950 text-white min-h-screen">
 
-      {/* HEADER */}
       <section className="py-20 text-center px-6 sm:px-12 lg:px-24">
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold">
           Discovery Timeline
@@ -22,20 +15,14 @@ export default function Timeline() {
         </p>
       </section>
 
-      {/* TIMELINE */}
       <section className="max-w-5xl mx-auto px-4 sm:px-0 pb-32 relative">
         <div className="relative border-l-2 border-cyan-500/30 ml-4 sm:ml-6">
 
           {timelineData.map((item, index) => (
-            <div
-              key={item.id}
-              className="mb-16 relative flex flex-col sm:flex-row items-start sm:items-center justify-start"
-            >
+            <div key={item.id} className="mb-16 relative flex flex-col sm:flex-row items-start sm:items-center justify-start">
 
-              {/* Dot */}
               <div className="absolute -left-5 sm:-left-6 top-0 w-5 h-5 bg-cyan-500 rounded-full shadow-lg animate-pulse"></div>
 
-              {/* Card */}
               <div
                 className={`bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-3xl p-6 sm:p-8 shadow-lg hover:shadow-cyan-500/30 transition-all duration-300
                   w-full sm:min-w-[280px] sm:flex-1

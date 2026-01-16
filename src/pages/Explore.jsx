@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { discoveries } from "../data/Discoveries";
 
 export default function Explore() {
-  
   const [search, setSearch] = useState("");
   const [yearRange, setYearRange] = useState("all");
   const [page, setPage] = useState(1);
@@ -29,26 +28,24 @@ export default function Explore() {
     return matchSearch && matchYear;
   });
 
-  
-  const itemsPerPage = 8; 
+  const itemsPerPage = 8;
   const totalPages = Math.ceil(filtered.length / itemsPerPage);
   const start = (page - 1) * itemsPerPage;
   const paginated = filtered.slice(start, start + itemsPerPage);
 
   return (
     <div className="bg-gradient-to-b from-black via-[#14132A] to-black text-white min-h-screen">
-
       <section className="py-20 text-center px-6">
         <h1 className="text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-emerald-400">
           Explore Discoveries
         </h1>
         <p className="mt-4 text-gray-400 max-w-3xl mx-auto">
-          Dive into the greatest ideas in science and learn the stories behind them.
+          Dive into the greatest ideas in science and learn the stories behind
+          them.
         </p>
       </section>
 
       <section className="max-w-6xl mx-auto px-6 mb-16 grid grid-cols-1 sm:grid-cols-3 gap-4">
-
         <input
           type="text"
           placeholder="Search title or scientist..."
@@ -90,7 +87,6 @@ export default function Explore() {
 
       <section className="max-w-7xl mx-auto px-6 pb-20">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-
           {paginated.length === 0 && (
             <p className="col-span-full text-center text-gray-400">
               No discoveries found.
@@ -115,9 +111,7 @@ export default function Explore() {
                 <p className="text-cyan-400 text-sm">
                   {item.scientist} • {item.year}
                 </p>
-                <p className="text-gray-300 text-sm mt-2">
-                  {item.desc}
-                </p>
+                <p className="text-gray-300 text-sm mt-2">{item.desc}</p>
               </div>
 
               <Link

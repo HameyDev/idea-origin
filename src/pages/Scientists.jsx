@@ -8,7 +8,8 @@ export default function Scientists() {
   const [category, setCategory] = useState("all");
   const [page, setPage] = useState(1);
 
-  const categories = ["all", "Physics", "Chemistry", "Biology", "Astronomy"];
+  const categories = ["all", "Physics", "Chemistry", "Biology", "Astronomy", "Engineering", "Computer Science", "Cosmology", "Microbiology", "Medicine", "Genetics"];
+
 
   const filtered = scientists.filter((s) => {
     const matchSearch = s.name.toLowerCase().includes(search.toLowerCase());
