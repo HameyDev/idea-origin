@@ -77,10 +77,10 @@ export default function Navbar() {
 
             {isExploreOpen && (
               <div className="ml-4 mt-2 space-y-2">
-                <MobileLink to="/explore/scientists" setIsOpen={setIsOpen}>
+                <MobileLink to="/explore-scientists" setIsOpen={setIsOpen}>
                   Scientists
                 </MobileLink>
-                <MobileLink to="/explore/discoveries" setIsOpen={setIsOpen}>
+                <MobileLink to="/explore-discovery" setIsOpen={setIsOpen}>
                   Discoveries
                 </MobileLink>
               </div>
