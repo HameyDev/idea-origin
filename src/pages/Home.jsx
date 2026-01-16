@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { FeaturedScientists } from "../data/FeaturedScientists";
+import { FamousDiscoveries } from "../data/FamousDiscoveries";
 
 export default function Home() {
   return (
@@ -62,32 +64,7 @@ export default function Home() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-          {[
-            {
-              id: "einstein",
-              name: "Albert Einstein",
-              field: "Theoretical Physics",
-              line: "Rewrote the rules of space, time, and energy.",
-              image:
-                "https://upload.wikimedia.org/wikipedia/commons/d/d3/Albert_Einstein_Head.jpg",
-            },
-            {
-              id: "tesla",
-              name: "Nikola Tesla",
-              field: "Electrical Engineering",
-              line: "Electrified the world with revolutionary ideas.",
-              image:
-                "https://upload.wikimedia.org/wikipedia/commons/d/d4/N.Tesla.JPG",
-            },
-            {
-              id: "newton",
-              name: "Isaac Newton",
-              field: "Classical Physics",
-              line: "Laid the foundation of modern science.",
-              image:
-                "https://upload.wikimedia.org/wikipedia/commons/3/39/GodfreyKneller-IsaacNewton-1689.jpg",
-            },
-          ].map((sci) => (
+          {FeaturedScientists.map((sci) => (
             <Link
               key={sci.id}
               to={`/scientist/${sci.id}`}
@@ -213,38 +190,7 @@ export default function Home() {
 
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
-            {[
-              {
-                id: "relativity",
-                title: "Theory of Relativity",
-                by: "Albert Einstein",
-                year: "1905",
-                description:
-                  "Transformed our understanding of space, time, and gravity. A cornerstone of modern physics.",
-                image:
-                  "/theory-of-relativity.jpg",
-              },
-              {
-                id: "gravity",
-                title: "Law of Gravity",
-                by: "Isaac Newton",
-                year: "1687",
-                description:
-                  "Defined the motion of planets, objects on Earth, and laid the foundation for classical mechanics.",
-                image:
-                  "law-of-gravity.jpg",
-              },
-              {
-                id: "ac",
-                title: "AC Electricity",
-                by: "Nikola Tesla",
-                year: "1893",
-                description:
-                  "Enabled long-distance transmission of electric power, shaping the modern world of electricity.",
-                image:
-                  "/ac-electricity.jpeg",
-              },
-            ].map((d) => (
+            {FamousDiscoveries.map((d) => (
               <Link
                 key={d.id}
                 to={`/discovery/${d.id}`}

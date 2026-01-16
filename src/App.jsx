@@ -16,21 +16,26 @@ import EditStories from "./pages/EditStories";
 import EditScientistsInfo from "./pages/EditScientistsInfo";
 import EditDiscovery from "./pages/EditDiscovery";
 import EditScientist from "./pages/EditScientist";
+import Scientists from "./pages/Scientists";
 
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import ScrollToTop from "./components/ScrollToTop";
+
 
 
 function App() {
 
   return (
     <>
+      <ScrollToTop />
       <Navbar />
 
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/explore-discovery" element={<Explore />} />
+        <Route path="/explore-scientists" element={<Scientists />} />
         <Route path="/scientist/:id" element={<ScientistProfile />} />
         <Route path="/discovery/:id" element={<DiscoveryStory />} />
         <Route path="/timeline" element={<Timeline />} />

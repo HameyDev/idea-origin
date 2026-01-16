@@ -31,7 +31,7 @@ export default function Navbar() {
             {isExploreOpen && (
               <div className="absolute top-full mt-3 w-52 rounded-2xl bg-slate-900/95 backdrop-blur-xl border border-white/10 shadow-xl overflow-hidden">
 
-                <DropdownLink to="/explore/scientists" onClick={() => setIsExploreOpen(false)}>
+                <DropdownLink to="/explore-scientists" onClick={() => setIsExploreOpen(false)}>
                   Scientists
                 </DropdownLink>
                 <DropdownLink to="/explore-discovery" onClick={() => setIsExploreOpen(false)}>

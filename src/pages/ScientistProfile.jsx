@@ -1,85 +1,10 @@
 import { useParams, Link } from "react-router-dom";
+import { scientists } from "../data/Scientists";
 
 export default function ScientistProfile() {
   const { id } = useParams();
 
-  const scientists = {
-    einstein: {
-      name: "Albert Einstein",
-      field: "Theoretical Physics",
-      born: "1879",
-      died: "1955",
-      bio: "Albert Einstein revolutionized physics with his theory of relativity, reshaping our understanding of space, time, and energy. His ideas continue to influence science and philosophy today.",
-      image: "https://upload.wikimedia.org/wikipedia/commons/d/d3/Albert_Einstein_Head.jpg",
-      discoveries: [
-        { id: "relativity", title: "Theory of Relativity", year: "1905" },
-        { id: "photoelectric", title: "Photoelectric Effect", year: "1905" },
-      ],
-      achievements: [
-        "Nobel Prize in Physics (1921)",
-        "Developed E=mc² equation",
-        "Unified concepts of space and time",
-      ],
-      quotes: [
-        "Imagination is more important than knowledge.",
-        "Life is like riding a bicycle. To keep your balance you must keep moving.",
-      ],
-      funFacts: [
-        "Loved playing the violin.",
-        "Refused the presidency of Israel.",
-      ],
-    },
-    tesla: {
-      name: "Nikola Tesla",
-      field: "Electrical Engineering",
-      born: "1856",
-      died: "1943",
-      bio: "Nikola Tesla was a visionary inventor and engineer, pioneering the development of alternating current (AC) electricity, wireless communication, and modern energy systems.",
-      image: "https://upload.wikimedia.org/wikipedia/commons/d/d4/N.Tesla.JPG",
-      discoveries: [
-        { id: "ac", title: "AC Electricity", year: "1890" },
-        { id: "wireless", title: "Wireless Energy", year: "1893" },
-      ],
-      achievements: [
-        "Patented over 300 inventions",
-        "Developed AC power systems",
-        "Predicted radio technology",
-      ],
-      quotes: [
-        "The present is theirs; the future, for which I really worked, is mine.",
-        "If you want to find the secrets of the universe, think in terms of energy, frequency, and vibration.",
-      ],
-      funFacts: [
-        "Had photographic memory.",
-        "Claimed to see visions and flashes of inventions in his mind.",
-      ],
-    },
-    newton: {
-      name: "Isaac Newton",
-      field: "Mathematics & Physics",
-      born: "1643",
-      died: "1727",
-      bio: "Isaac Newton formulated the laws of motion and universal gravitation, laying the foundations of classical mechanics and profoundly impacting mathematics, physics, and astronomy.",
-      image: "https://upload.wikimedia.org/wikipedia/commons/d/d1/Sir_Isaac_Newton_%281642-1727%29.jpg",
-      discoveries: [
-        { id: "gravity", title: "Law of Gravity", year: "1687" },
-        { id: "motion", title: "Laws of Motion", year: "1687" },
-      ],
-      achievements: [
-        "Fellow of the Royal Society",
-        "Master of the Mint",
-        "Published Philosophiæ Naturalis Principia Mathematica",
-      ],
-      quotes: [
-        "If I have seen further it is by standing on the shoulders of Giants.",
-        "What we know is a drop, what we don't know is an ocean.",
-      ],
-      funFacts: [
-        "Practiced alchemy.",
-        "Had a deep interest in theology.",
-      ],
-    },
-  };
+  
 
   const scientist = scientists[id];
 

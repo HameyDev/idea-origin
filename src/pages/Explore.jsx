@@ -1,67 +1,158 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { discoveries } from "../data/Discoveries";
 
 export default function Explore() {
-  const discoveries = [
-    { id: "relativity", title: "Theory of Relativity", scientist: "Albert Einstein", desc: "A revolutionary idea that changed how we see space and time.", image: "/theory-of-relativity.jpg" },
-    { id: "gravity", title: "Law of Gravity", scientist: "Isaac Newton", desc: "The force that governs motion of planets and objects.", image: "/law-of-gravity.jpg" },
-    { id: "ac", title: "AC Electricity", scientist: "Nikola Tesla", desc: "The system that powers our modern world.", image: "/ac-electricity.jpeg" },
-    { id: "penicillin", title: "Penicillin", scientist: "Alexander Fleming", desc: "The discovery that changed medicine forever.", image: "/theory-of-relativity.jpg" },
-    { id: "dna", title: "DNA Structure", scientist: "Watson & Crick", desc: "The code of life explained.", image: "/law-of-gravity.jpg" },
-    { id: "radio", title: "Radio Waves", scientist: "Guglielmo Marconi", desc: "Communication without wires.", image: "/ac-electricity.jpeg" },
-  ];
+  
+  const [search, setSearch] = useState("");
+  const [yearRange, setYearRange] = useState("all");
+  const [page, setPage] = useState(1);
+
+  const ranges = {
+    all: [0, 3000],
+    "1600-1700": [1600, 1700],
+    "1701-1800": [1701, 1800],
+    "1801-1900": [1801, 1900],
+    "1901-1950": [1901, 1950],
+    "1951-2000": [1951, 2000],
+  };
+
+  const [minYear, maxYear] = ranges[yearRange];
+
+  const filtered = discoveries.filter((d) => {
+    const matchSearch =
+      d.title.toLowerCase().includes(search.toLowerCase()) ||
+      d.scientist.toLowerCase().includes(search.toLowerCase());
+
+    const matchYear = d.year >= minYear && d.year <= maxYear;
+
+    return matchSearch && matchYear;
+  });
+
+  
+  const itemsPerPage = 8; 
+  const totalPages = Math.ceil(filtered.length / itemsPerPage);
+  const start = (page - 1) * itemsPerPage;
+  const paginated = filtered.slice(start, start + itemsPerPage);
 
   return (
     <div className="bg-gradient-to-b from-black via-[#14132A] to-black text-white min-h-screen">
 
-      {/* HEADER */}
-      <section className="py-20 text-center px-6 sm:px-12 lg:px-24">
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-emerald-400">
+      <section className="py-20 text-center px-6">
+        <h1 className="text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-emerald-400">
           Explore Discoveries
         </h1>
-        <p className="mt-4 text-gray-400 text-sm sm:text-base md:text-lg max-w-3xl mx-auto">
+        <p className="mt-4 text-gray-400 max-w-3xl mx-auto">
           Dive into the greatest ideas in science and learn the stories behind them.
         </p>
       </section>
 
-      {/* SEARCH */}
-      <section className="max-w-4xl mx-auto px-6 sm:px-0 mb-16">
+      <section className="max-w-6xl mx-auto px-6 mb-16 grid grid-cols-1 sm:grid-cols-3 gap-4">
+
         <input
           type="text"
-          placeholder="Search discoveries..."
-          className="w-full p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-slate-800 to-slate-700 text-white placeholder-gray-400 outline-none focus:ring-2 focus:ring-cyan-500 transition duration-300 shadow-lg"
+          placeholder="Search title or scientist..."
+          value={search}
+          onChange={(e) => {
+            setSearch(e.target.value);
+            setPage(1);
+          }}
+          className="p-4 rounded-xl bg-slate-800 text-white outline-none focus:ring-2 focus:ring-cyan-500"
         />
+
+        <select
+          value={yearRange}
+          onChange={(e) => {
+            setYearRange(e.target.value);
+            setPage(1);
+          }}
+          className="p-4 rounded-xl bg-slate-800 text-white outline-none focus:ring-2 focus:ring-cyan-500"
+        >
+          <option value="all">All Years</option>
+          <option value="1600-1700">1600 – 1700</option>
+          <option value="1701-1800">1701 – 1800</option>
+          <option value="1801-1900">1801 – 1900</option>
+          <option value="1901-1950">1901 – 1950</option>
+          <option value="1951-2000">1951 – 2000</option>
+        </select>
+
+        <button
+          onClick={() => {
+            setSearch("");
+            setYearRange("all");
+            setPage(1);
+          }}
+          className="p-4 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 font-medium hover:scale-105 transition"
+        >
+          Clear Filters
+        </button>
       </section>
 
-      {/* DISCOVERIES GRID */}
-      <section className="max-w-6xl mx-auto px-6 sm:px-0 pb-20">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {discoveries.map((item) => (
+      <section className="max-w-7xl mx-auto px-6 pb-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
+          {paginated.length === 0 && (
+            <p className="col-span-full text-center text-gray-400">
+              No discoveries found.
+            </p>
+          )}
+
+          {paginated.map((item) => (
             <div
               key={item.id}
-              className="bg-slate-900/80 backdrop-blur-lg rounded-3xl p-6 flex flex-col justify-between shadow-2xl border border-white/10 hover:shadow-cyan-500/40 hover:scale-105 transition-transform duration-300"
+              className="bg-slate-900/80 rounded-2xl p-5 flex flex-col justify-between shadow-xl border border-white/10 hover:scale-105 transition"
             >
               <div>
-                <div className="h-40 sm:h-48 w-full rounded-2xl overflow-hidden mb-4 shadow-inner border border-white/10">
+                <div className="h-36 w-full rounded-xl overflow-hidden mb-3 border border-white/10">
                   <img
                     src={item.image}
                     alt={item.title}
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold">{item.title}</h3>
-                <p className="text-cyan-400 mt-1 text-sm sm:text-base">{item.scientist}</p>
-                <p className="text-gray-300 mt-3 text-sm sm:text-base md:text-base">{item.desc}</p>
+
+                <h3 className="text-lg font-bold">{item.title}</h3>
+                <p className="text-cyan-400 text-sm">
+                  {item.scientist} • {item.year}
+                </p>
+                <p className="text-gray-300 text-sm mt-2">
+                  {item.desc}
+                </p>
               </div>
 
               <Link
                 to={`/discovery/${item.id}`}
-                className="mt-6 inline-block text-cyan-400 hover:text-emerald-400 font-medium text-sm sm:text-base"
+                className="mt-4 text-cyan-400 hover:text-emerald-400 text-sm font-medium"
               >
                 Read Story →
               </Link>
             </div>
           ))}
         </div>
+
+        {totalPages > 1 && (
+          <div className="flex justify-center items-center gap-6 mt-16">
+            <button
+              disabled={page === 1}
+              onClick={() => setPage(page - 1)}
+              className="px-6 py-2 rounded-xl border border-white/30 disabled:opacity-40 hover:bg-white hover:text-black transition"
+            >
+              Prev
+            </button>
+
+            <span className="text-gray-300">
+              Page {page} of {totalPages}
+            </span>
+
+            <button
+              disabled={page === totalPages}
+              onClick={() => setPage(page + 1)}
+              className="px-6 py-2 rounded-xl border border-white/30 disabled:opacity-40 hover:bg-white hover:text-black transition"
+            >
+              Next
+            </button>
+          </div>
+        )}
       </section>
     </div>
   );
