@@ -200,20 +200,27 @@ export default function Scientists() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.3 }}
-                  className="bg-slate-900 rounded-2xl p-5"
+                  className="bg-slate-900 rounded-2xl p-5 cursor-pointer
+             hover:shadow-[0_0_25px_cyan] hover:shadow-cyan-400/70
+             transition-all duration-300 group"
                 >
                   <Link to={`/scientist/${sci.id}`}>
-                    <div className="h-60 rounded-xl mb-4 overflow-hidden">
+                    <div className="h-60 rounded-xl mb-4 overflow-hidden ">
                       <img
                         src={sci.image}
                         alt={sci.name}
-                        className="h-full w-full object-cover"
+                        className="h-full w-full object-cover group-hover:brightness-110 transition-all duration-300"
                       />
                     </div>
-                    <h3 className="text-xl font-semibold">{sci.name}</h3>
-                    <p className="text-gray-400 mt-1">{sci.field}</p>
+                    <h3 className="text-xl font-semibold group-hover:text-cyan-400 transition-all duration-300">
+                      {sci.name}
+                    </h3>
+                    <p className="text-gray-400 mt-1 group-hover:text-cyan-400 transition-all duration-300">
+                      {sci.field}
+                    </p>
                   </Link>
                 </motion.div>
+
               ))}
             </AnimatePresence>
           </motion.div>
