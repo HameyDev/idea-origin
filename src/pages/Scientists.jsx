@@ -215,7 +215,7 @@ export default function Scientists() {
                     <h3 className="text-xl font-semibold group-hover:text-cyan-400 transition-all duration-300">
                       {sci.name}
                     </h3>
-                    <p className="text-gray-400 mt-1 group-hover:text-cyan-400 transition-all duration-300">
+                    <p className="text-gray-400 mt-1 transition-all duration-300">
                       {sci.field}
                     </p>
                   </Link>
