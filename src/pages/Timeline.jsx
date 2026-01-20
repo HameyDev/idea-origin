@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import { timelineData } from "../data/timelineData";
+import { motion } from "framer-motion";
 
 export default function Timeline() {
-
   return (
     <div className="bg-gradient-to-br from-slate-950 via-[#0f0f22] to-slate-950 text-white min-h-screen">
 
+      {/* Header */}
       <section className="py-20 text-center px-6 sm:px-12 lg:px-24">
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold">
           Discovery Timeline
@@ -15,14 +16,23 @@ export default function Timeline() {
         </p>
       </section>
 
+      {/* Timeline */}
       <section className="max-w-5xl mx-auto px-4 sm:px-0 pb-32 relative">
         <div className="relative border-l-2 border-cyan-500/30 ml-4 sm:ml-6">
 
           {timelineData.map((item, index) => (
-            <div key={item.id} className="mb-16 relative flex flex-col sm:flex-row items-start sm:items-center justify-start">
-
+            <motion.div
+              key={item.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.5, delay: index * 0.15 }}
+              className="mb-16 relative flex flex-col sm:flex-row items-start sm:items-center justify-start"
+            >
+              {/* Timeline Dot */}
               <div className="absolute -left-5 sm:-left-6 top-0 w-5 h-5 bg-cyan-500 rounded-full shadow-lg animate-pulse"></div>
 
+              {/* Timeline Card */}
               <div
                 className={`bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-3xl p-6 sm:p-8 shadow-lg hover:shadow-cyan-500/30 transition-all duration-300
                   w-full sm:min-w-[280px] sm:flex-1
@@ -51,7 +61,7 @@ export default function Timeline() {
                   Read Story →
                 </Link>
               </div>
-            </div>
+            </motion.div>
           ))}
 
         </div>

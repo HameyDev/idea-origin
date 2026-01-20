@@ -1,22 +1,43 @@
+import { motion } from "framer-motion";
+
 export default function About() {
+  const fadeUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0 },
+  };
+
   return (
     <div className="bg-slate-950 text-white min-h-screen">
 
       {/* HEADER */}
-      <section className="py-16 text-center px-6 sm:px-12 lg:px-24">
+      <motion.section
+        className="py-16 text-center px-6 sm:px-12 lg:px-24"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={fadeUp}
+        transition={{ duration: 0.6 }}
+      >
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold">
           About Discovery Stories
         </h1>
         <p className="mt-4 text-gray-400 text-sm sm:text-base md:text-lg max-w-2xl mx-auto">
           Behind every great idea is a human story.
         </p>
-      </section>
+      </motion.section>
 
       {/* MAIN CONTENT */}
       <section className="max-w-5xl mx-auto px-6 sm:px-0 pb-20 space-y-12 sm:space-y-16">
 
         {/* WHO WE ARE */}
-        <div className="bg-slate-900 rounded-2xl p-6 sm:p-8">
+        <motion.div
+          className="bg-slate-900 rounded-2xl p-6 sm:p-8"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={fadeUp}
+          transition={{ duration: 0.5 }}
+        >
           <h2 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">
             What is Discovery Stories?
           </h2>
@@ -26,10 +47,17 @@ export default function About() {
             We focus not just on the results, but on the struggles, failures,
             and moments of inspiration that shaped history.
           </p>
-        </div>
+        </motion.div>
 
         {/* MISSION */}
-        <div className="bg-slate-900 rounded-2xl p-6 sm:p-8">
+        <motion.div
+          className="bg-slate-900 rounded-2xl p-6 sm:p-8"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={fadeUp}
+          transition={{ duration: 0.5, delay: 0.1 }}
+        >
           <h2 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">
             Our Mission
           </h2>
@@ -38,10 +66,17 @@ export default function About() {
             We believe that when people understand the story behind an idea,
             learning becomes more meaningful and inspiring.
           </p>
-        </div>
+        </motion.div>
 
         {/* WHY THIS PROJECT */}
-        <div className="bg-slate-900 rounded-2xl p-6 sm:p-8">
+        <motion.div
+          className="bg-slate-900 rounded-2xl p-6 sm:p-8"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={fadeUp}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
           <h2 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">
             Why This Project?
           </h2>
@@ -50,10 +85,17 @@ export default function About() {
             This project was created to change that — by turning discoveries
             into stories that anyone can enjoy and remember.
           </p>
-        </div>
+        </motion.div>
 
         {/* VISION */}
-        <div className="bg-slate-900 rounded-2xl p-6 sm:p-8">
+        <motion.div
+          className="bg-slate-900 rounded-2xl p-6 sm:p-8"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={fadeUp}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        >
           <h2 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">
             Our Vision
           </h2>
@@ -63,7 +105,7 @@ export default function About() {
             In the future, Discovery Stories will include interactive timelines,
             videos, and community contributions.
           </p>
-        </div>
+        </motion.div>
 
       </section>
     </div>

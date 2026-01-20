@@ -2,12 +2,25 @@ import { Link } from "react-router-dom";
 import { FeaturedScientists } from "../data/FeaturedScientists";
 import { FamousDiscoveries } from "../data/FamousDiscoveries";
 
+import { motion } from "framer-motion";
+import { fadeUp, staggerContainer } from "../animations/scrollAnimations";
+
+
 export default function Home() {
   return (
     <div className="bg-slate-950 text-white">
 
-      <section className="relative min-h-[90vh] flex items-center justify-center text-center px-6 md:px-12 lg:px-24"
-        style={{ backgroundImage: "url('/hero.jpg')", backgroundSize: "cover", backgroundPosition: "center", }}
+      <motion.section
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        className="relative min-h-[90vh] flex items-center justify-center text-center px-6 md:px-12 lg:px-24"
+        style={{
+          backgroundImage: "url('/hero.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
       >
         <div className="absolute inset-0 bg-slate-950/30 backdrop-blur-sm"></div>
 
@@ -45,7 +58,7 @@ export default function Home() {
 
         </div>
 
-      </section>
+      </motion.section>
 
 
       <section className="py-28 px-6 max-w-7xl mx-auto">
@@ -63,56 +76,70 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.4 }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10"
+        >
           {FeaturedScientists.map((sci) => (
-            <Link
+            <motion.div
               key={sci.id}
-              to={`/scientist/${sci.id}`}
-              className="group relative bg-slate-900 rounded-3xl overflow-hidden border border-white/10 hover:border-cyan-400 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-cyan-500/10">
+              variants={fadeUp}
+              whileHover={{ y: -8 }}
+              transition={{ type: "spring", stiffness: 200, damping: 20 }}
+              className="group relative bg-slate-900 rounded-3xl overflow-hidden border border-white/10 hover:border-cyan-400 hover:shadow-xl hover:shadow-cyan-500/10"
+            >
+              <Link
+                key={sci.id}
+                to={`/scientist/${sci.id}`}
+              >
 
-              <div className="relative h-56 overflow-hidden">
+                <div className="relative h-56 overflow-hidden">
 
-                <img
-                  src={sci.image}
-                  alt={sci.name}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
+                  <img
+                    src={sci.image}
+                    alt={sci.name}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
 
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/40 to-transparent"></div>
-
-              </div>
-
-
-              <div className="relative p-6">
-
-                <h3 className="text-xl font-bold text-white group-hover:text-cyan-400 transition">
-                  {sci.name}
-                </h3>
-
-                <p className="text-sm text-emerald-400 mt-1">
-                  {sci.field}
-                </p>
-
-                <p className="text-gray-400 mt-3 text-sm leading-relaxed">
-                  {sci.line}
-                </p>
-
-                <div className="mt-5 flex items-center justify-between">
-
-                  <span className="text-cyan-400 text-sm font-medium">
-                    View Profile →
-                  </span>
-
-                  <span className="text-xs text-gray-500">
-                    Read Story
-                  </span>
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/40 to-transparent"></div>
 
                 </div>
 
-              </div>
-            </Link>
+
+                <div className="relative p-6">
+
+                  <h3 className="text-xl font-bold text-white group-hover:text-cyan-400 transition">
+                    {sci.name}
+                  </h3>
+
+                  <p className="text-sm text-emerald-400 mt-1">
+                    {sci.field}
+                  </p>
+
+                  <p className="text-gray-400 mt-3 text-sm leading-relaxed">
+                    {sci.line}
+                  </p>
+
+                  <div className="mt-5 flex items-center justify-between">
+
+                    <span className="text-cyan-400 text-sm font-medium">
+                      View Profile →
+                    </span>
+
+                    <span className="text-xs text-gray-500">
+                      Read Story
+                    </span>
+
+                  </div>
+
+                </div>
+              </Link>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
       </section>
 
@@ -171,7 +198,14 @@ export default function Home() {
 
 
 
-      <section className="py-28 px-6 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+      <motion.section
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        className="py-28 px-6 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950"
+      >
+
         <div className="max-w-6xl mx-auto">
 
 
@@ -228,14 +262,14 @@ export default function Home() {
 
         </div>
 
-      </section>
+      </motion.section>
 
 
       <section className="relative py-36 text-center px-6 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 overflow-hidden">
 
         <div className="absolute inset-0 bg-gradient-to-b from-cyan-900/10 via-emerald-900/20 to-cyan-900/20 blur-3xl"></div>
 
-        
+
         <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
           {[...Array(20)].map((_, i) => (
             <span
@@ -251,7 +285,14 @@ export default function Home() {
           ))}
         </div>
 
-        <div className="relative z-10 max-w-3xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          viewport={{ once: true }}
+          className="relative z-10 max-w-3xl mx-auto"
+        >
+
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-snug">
             Start Your Journey Through{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-emerald-400">
@@ -265,13 +306,13 @@ export default function Home() {
           </p>
 
           <Link
-            to="/explore"
+            to="/explore-discovery"
             className="mt-12 inline-block px-12 py-4 rounded-2xl font-semibold bg-gradient-to-r from-cyan-500 to-emerald-600 text-white shadow-lg shadow-emerald-500/30 hover:scale-105 transition-transform"
           >
             Start Exploring
           </Link>
-        </div>
-        
+        </motion.div>
+
       </section>
 
 
