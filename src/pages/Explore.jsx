@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 import { discoveries } from "../data/Discoveries";
 import { motion, AnimatePresence } from "framer-motion";
 import { HiOutlineFilter } from "react-icons/hi";
+import FilterSidebar from "../components/FilterSidebar";
 
 /* =======================
    SCIENCE FIELDS
@@ -46,24 +47,44 @@ const yearRanges = {
 };
 
 export default function Explore() {
-  const [search, setSearch] = useState("");
-  const [selectedFields, setSelectedFields] = useState([]);
-  const [yearRange, setYearRange] = useState("all");
-  const [page, setPage] = useState(1);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  /* =======================
+     URL STATE
+  ======================= */
+  const search = searchParams.get("search") || "";
+  const yearRange = searchParams.get("year") || "all";
+  const page = Number(searchParams.get("page")) || 1;
+
+  const selectedFields = searchParams.get("fields")
+    ? searchParams.get("fields").split(",")
+    : [];
 
   const [minYear, maxYear] = yearRanges[yearRange];
+
+  /* =======================
+     UPDATE PARAMS
+  ======================= */
+  const updateParams = (params) => {
+    setSearchParams({
+      search,
+      year: yearRange,
+      page,
+      fields: selectedFields.join(","),
+      ...params,
+    });
+  };
 
   /* =======================
      FIELD TOGGLE
   ======================= */
   const toggleField = (field) => {
-    setPage(1);
-    setSelectedFields((prev) =>
-      prev.includes(field)
-        ? prev.filter((f) => f !== field)
-        : [...prev, field]
-    );
+    const updated = selectedFields.includes(field)
+      ? selectedFields.filter((f) => f !== field)
+      : [...selectedFields, field];
+
+    updateParams({ fields: updated.join(","), page: 1 });
   };
 
   /* =======================
@@ -75,9 +96,7 @@ export default function Explore() {
       d.scientist.toLowerCase().includes(search.toLowerCase());
 
     const matchField =
-      selectedFields.length === 0
-        ? true
-        : selectedFields.includes(d.field);
+      selectedFields.length === 0 || selectedFields.includes(d.field);
 
     const matchYear = d.year >= minYear && d.year <= maxYear;
 
@@ -91,7 +110,6 @@ export default function Explore() {
   const totalPages = Math.ceil(filtered.length / itemsPerPage);
   const start = (page - 1) * itemsPerPage;
   const paginated = filtered.slice(start, start + itemsPerPage);
-
 
   return (
     <div className="bg-gradient-to-b from-black via-[#14132A] to-black text-white min-h-screen px-4 lg:px-10 py-10">
@@ -116,10 +134,9 @@ export default function Explore() {
           type="text"
           placeholder="Search by discovery or scientist..."
           value={search}
-          onChange={(e) => {
-            setSearch(e.target.value);
-            setPage(1);
-          }}
+          onChange={(e) =>
+            updateParams({ search: e.target.value, page: 1 })
+          }
           className="flex-1 p-4 rounded-xl bg-slate-800 outline-none focus:ring-2 focus:ring-cyan-500"
         />
 
@@ -133,11 +150,14 @@ export default function Explore() {
 
       <div className="flex gap-8 max-w-7xl mx-auto">
 
-        {/* ================= SIDEBAR (DESKTOP) ================= */}
-        <aside className="hidden lg:block w-72 bg-slate-900/80 p-6 rounded-2xl h-fit sticky top-10">
-          <h2 className="text-xl font-bold mb-4">Filters</h2>
-
+        {/* ================= SIDEBAR ================= */}
+        <FilterSidebar
+          title="Filters"
+          isOpen={sidebarOpen}
+          onClose={() => setSidebarOpen(false)}
+        >
           <p className="text-sm text-gray-400 mb-2">Fields</p>
+
           <div className="space-y-2 mb-6">
             {fields.map((f) => (
               <label key={f} className="flex items-center gap-2 text-sm">
@@ -156,10 +176,9 @@ export default function Explore() {
             <span className="text-sm text-gray-400">Year</span>
             <select
               value={yearRange}
-              onChange={(e) => {
-                setYearRange(e.target.value);
-                setPage(1);
-              }}
+              onChange={(e) =>
+                updateParams({ year: e.target.value, page: 1 })
+              }
               className="w-full mt-1 p-2 rounded-xl bg-slate-800"
             >
               <option value="all">All</option>
@@ -175,20 +194,20 @@ export default function Explore() {
 
           <button
             onClick={() => {
-              setSearch("");
-              setSelectedFields([]);
-              setYearRange("all");
-              setPage(1);
+              setSearchParams({});
+              setSidebarOpen(false);
             }}
-            className="w-full p-3 rounded-xl bg-indigo-600 hover:bg-indigo-700"
+            className="w-full p-3 rounded-xl bg-gradient-to-r
+              from-cyan-500 to-emerald-600
+              shadow-lg shadow-emerald-500/30
+              hover:scale-105 transition"
           >
             Clear Filters
           </button>
-        </aside>
+        </FilterSidebar>
 
         {/* ================= GRID ================= */}
         <main className="flex-1">
-
           <AnimatePresence mode="wait">
             <motion.div
               key={page}
@@ -208,8 +227,7 @@ export default function Explore() {
                   className="bg-slate-900/80 rounded-2xl p-5 shadow-xl border border-white/10
                              h-[360px] flex flex-col justify-between"
                 >
-                  {/* IMAGE */}
-                  <div className="h-[140px] min-h-[140px] rounded-xl overflow-hidden">
+                  <div className="h-[140px] rounded-xl overflow-hidden">
                     <img
                       src={item.image}
                       alt={item.title}
@@ -217,7 +235,6 @@ export default function Explore() {
                     />
                   </div>
 
-                  {/* CONTENT */}
                   <div>
                     <h3 className="text-lg font-bold line-clamp-2">
                       {item.title}
@@ -232,7 +249,6 @@ export default function Explore() {
                     </p>
                   </div>
 
-                  {/* LINK */}
                   <Link
                     to={`/discovery/${item.id}`}
                     className="text-cyan-400 hover:text-emerald-400 text-sm font-medium"
@@ -244,12 +260,11 @@ export default function Explore() {
             </motion.div>
           </AnimatePresence>
 
-          {/* ================= PAGINATION ================= */}
           {totalPages > 1 && (
             <div className="flex justify-center gap-6 mt-16">
               <button
                 disabled={page === 1}
-                onClick={() => setPage(page - 1)}
+                onClick={() => updateParams({ page: page - 1 })}
                 className="px-6 py-2 rounded-xl border disabled:opacity-40"
               >
                 Prev
@@ -261,7 +276,7 @@ export default function Explore() {
 
               <button
                 disabled={page === totalPages}
-                onClick={() => setPage(page + 1)}
+                onClick={() => updateParams({ page: page + 1 })}
                 className="px-6 py-2 rounded-xl border disabled:opacity-40"
               >
                 Next

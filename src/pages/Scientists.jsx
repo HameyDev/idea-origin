@@ -1,8 +1,12 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { scientists } from "../data/Scientists";
 import { motion, AnimatePresence } from "framer-motion";
-import { HiOutlineFilter, HiX } from "react-icons/hi"; // Filter icon
+import { HiOutlineFilter, HiX } from "react-icons/hi";
+import FilterSidebar from "../components/FilterSidebar";
+
+
+
 
 const scienceFields = [
   "Physics",
@@ -31,24 +35,41 @@ const scienceFields = [
 ];
 
 export default function Scientists() {
-  const [search, setSearch] = useState("");
-  const [selectedFields, setSelectedFields] = useState([]);
-  const [page, setPage] = useState(1);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const itemsPerPage = 8;
 
-  const handleFieldCheck = (e) => {
-    const value = e.target.value;
-    setPage(1);
-    setSelectedFields((prev) =>
-      prev.includes(value) ? prev.filter((f) => f !== value) : [...prev, value]
-    );
+  // 🔥 URL STATE
+  const search = searchParams.get("search") || "";
+  const page = Number(searchParams.get("page")) || 1;
+  const selectedFields = searchParams.get("fields")
+    ? searchParams.get("fields").split(",")
+    : [];
+
+  // 🔥 HELPERS
+  const updateParams = (params) => {
+    setSearchParams({
+      search,
+      page,
+      fields: selectedFields.join(","),
+      ...params,
+    });
   };
 
+  const handleFieldCheck = (field) => {
+    const updated = selectedFields.includes(field)
+      ? selectedFields.filter((f) => f !== field)
+      : [...selectedFields, field];
+
+    updateParams({ fields: updated.join(","), page: 1 });
+  };
+
+  // 🔍 FILTER LOGIC
   const filtered = scientists.filter((sci) => {
     const matchSearch = sci.name.toLowerCase().includes(search.toLowerCase());
     const matchField =
-      selectedFields.length === 0 ? true : selectedFields.includes(sci.field);
+      selectedFields.length === 0 || selectedFields.includes(sci.field);
     return matchSearch && matchField;
   });
 
@@ -84,10 +105,9 @@ export default function Scientists() {
           type="text"
           placeholder="Search scientist..."
           value={search}
-          onChange={(e) => {
-            setSearch(e.target.value);
-            setPage(1);
-          }}
+          onChange={(e) =>
+            updateParams({ search: e.target.value, page: 1 })
+          }
           className="flex-1 p-4 rounded-xl bg-slate-800 outline-none focus:ring-2 focus:ring-indigo-500"
         />
 
@@ -102,31 +122,39 @@ export default function Scientists() {
 
       <div className="flex gap-8 max-w-7xl mx-auto">
         {/* Desktop Sidebar */}
-        <aside className="hidden lg:block w-64 bg-slate-900/80 p-6 rounded-2xl sticky top-10 h-fit">
-          <h2 className="font-bold text-xl mb-4">Filter by Field</h2>
+
+        <FilterSidebar
+          title="Filter by Field"
+          isOpen={sidebarOpen}
+          onClose={() => setSidebarOpen(false)}
+        >
           {scienceFields.map((field) => (
-            <label key={field} className="flex items-center space-x-2 mb-2">
+            <label key={field} className="flex items-center gap-2 mb-2">
               <input
                 type="checkbox"
                 value={field}
                 checked={selectedFields.includes(field)}
-                onChange={handleFieldCheck}
+                onChange={() => handleFieldCheck(field)}
                 className="accent-cyan-400"
               />
               <span>{field}</span>
             </label>
           ))}
+
           <button
-            onClick={() => {
-              setSelectedFields([]);
-              setSearch("");
-              setPage(1);
-            }}
-            className="mt-4 w-full p-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 transition font-medium"
+            onClick={() =>
+              setSearchParams({})
+            }
+            className="mt-4 w-full p-3 rounded-xl bg-gradient-to-r
+               from-cyan-500 to-emerald-600
+               shadow-lg shadow-emerald-500/30
+               hover:scale-105 transition font-medium"
           >
             Clear Filters
           </button>
-        </aside>
+        </FilterSidebar>
+
+
 
         {/* Mobile Sidebar */}
         <AnimatePresence>
@@ -145,31 +173,40 @@ export default function Scientists() {
                 <HiX className="w-6 h-6 text-white" />
               </button>
 
-              <h2 className="font-bold text-xl mb-4">Filter by Field</h2>
-              {scienceFields.map((field) => (
-                <label key={field} className="flex items-center space-x-2 mb-2">
-                  <input
-                    type="checkbox"
-                    value={field}
-                    checked={selectedFields.includes(field)}
-                    onChange={handleFieldCheck}
-                    className="accent-cyan-400"
-                  />
-                  <span>{field}</span>
-                </label>
-              ))}
-
-              <button
-                onClick={() => {
-                  setSelectedFields([]);
-                  setSearch("");
-                  setPage(1);
-                  setSidebarOpen(false);
-                }}
-                className="mt-4 w-full p-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 transition font-medium"
+              <FilterSidebar
+                title="Filter by Field"
+                isOpen={sidebarOpen}
+                onClose={() => setSidebarOpen(false)}
               >
-                Clear Filters
-              </button>
+                {scienceFields.map((field) => (
+                  <label key={field} className="flex items-center gap-2 mb-2">
+                    <input
+                      type="checkbox"
+                      value={field}
+                      checked={selectedFields.includes(field)}
+                      onChange={handleFieldCheck}
+                      className="accent-cyan-400"
+                    />
+                    <span>{field}</span>
+                  </label>
+                ))}
+
+                <button
+                  onClick={() => {
+                    setSelectedFields([]);
+                    setSearch("");
+                    setPage(1);
+                    setSidebarOpen(false);
+                  }}
+                  className="mt-4 w-full p-3 rounded-xl bg-gradient-to-r
+               from-cyan-500 to-emerald-600
+               shadow-lg shadow-emerald-500/30
+               hover:scale-105 transition font-medium"
+                >
+                  Clear Filters
+                </button>
+              </FilterSidebar>
+
             </motion.div>
           )}
         </AnimatePresence>
@@ -230,7 +267,7 @@ export default function Scientists() {
             <div className="flex justify-center items-center gap-6 mt-8">
               <button
                 disabled={page === 1}
-                onClick={() => setPage(page - 1)}
+                onClick={() => updateParams({ page: page - 1 })}
                 className="px-6 py-2 rounded-xl border border-white/30 disabled:opacity-40 hover:bg-white hover:text-black transition"
               >
                 Prev
@@ -240,7 +277,7 @@ export default function Scientists() {
               </span>
               <button
                 disabled={page === totalPages}
-                onClick={() => setPage(page + 1)}
+                onClick={() => updateParams({ page: page + 1 })}
                 className="px-6 py-2 rounded-xl border border-white/30 disabled:opacity-40 hover:bg-white hover:text-black transition"
               >
                 Next

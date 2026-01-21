@@ -4,6 +4,8 @@ import NavLink from "./NavLink";
 import DropdownLink from "./DropdownLink";
 import MobileLink from "./MobileLink";
 
+import GradientButton from "../components/GradientButton";
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isExploreOpen, setIsExploreOpen] = useState(false);
@@ -47,9 +49,9 @@ export default function Navbar() {
           <NavLink to="/about">About</NavLink>
           <NavLink to="/auth">Login</NavLink>
 
-          <Link to="/dashboard" className="px-4 py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-600 text-white font-semibold shadow-md hover:scale-105 transition-transform">
+          <GradientButton to="/explore-discovery" className="">
             Dashboard
-          </Link>
+          </GradientButton>
 
         </div>
 

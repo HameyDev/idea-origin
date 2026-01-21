@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { FeaturedScientists } from "../data/FeaturedScientists";
 import { FamousDiscoveries } from "../data/FamousDiscoveries";
+import GradientButton from "../components/GradientButton";
 
 import { motion } from "framer-motion";
 import { fadeUp, staggerContainer } from "../animations/scrollAnimations";
@@ -41,15 +42,12 @@ export default function Home() {
 
           <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
 
-            <Link
-              to="/explore"
-              className="px-8 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-600 text-white font-semibold shadow-lg hover:scale-105 transition"
-            >
+            <GradientButton to="/explore-discovery" className="">
               Explore Stories
-            </Link>
+            </GradientButton>
             <Link
               to="/timeline"
-              className="px-8 py-3 rounded-xl border border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-black transition"
+              className="px-10 py-3 rounded-xl border border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-black transition"
             >
               View Timeline
             </Link>
@@ -95,48 +93,36 @@ export default function Home() {
                 key={sci.id}
                 to={`/scientist/${sci.id}`}
               >
-
+                {/* Image */}
                 <div className="relative h-56 overflow-hidden">
-
                   <img
                     src={sci.image}
                     alt={sci.name}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
-
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/40 to-transparent"></div>
-
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
                 </div>
 
-
+                {/* Content */}
                 <div className="relative p-6">
-
                   <h3 className="text-xl font-bold text-white group-hover:text-cyan-400 transition">
                     {sci.name}
                   </h3>
 
-                  <p className="text-sm text-emerald-400 mt-1">
+                  <p className="text-emerald-400 mt-1 text-sm">
                     {sci.field}
                   </p>
 
-                  <p className="text-gray-400 mt-3 text-sm leading-relaxed">
+                  <p className="text-gray-400 mt-3 text-sm leading-relaxed line-clamp-3">
                     {sci.line}
                   </p>
 
-                  <div className="mt-5 flex items-center justify-between">
-
-                    <span className="text-cyan-400 text-sm font-medium">
-                      View Profile →
-                    </span>
-
-                    <span className="text-xs text-gray-500">
-                      Read Story
-                    </span>
-
-                  </div>
-
+                  <span className="mt-5 inline-block text-cyan-400 group-hover:text-emerald-400 font-medium text-sm">
+                    View Profile →
+                  </span>
                 </div>
               </Link>
+
             </motion.div>
           ))}
         </motion.div>
@@ -305,12 +291,9 @@ export default function Home() {
             how their ideas continue to shape the world today.
           </p>
 
-          <Link
-            to="/explore-discovery"
-            className="mt-12 inline-block px-12 py-4 rounded-2xl font-semibold bg-gradient-to-r from-cyan-500 to-emerald-600 text-white shadow-lg shadow-emerald-500/30 hover:scale-105 transition-transform"
-          >
+          <GradientButton to="/explore-discovery" className="mt-12">
             Start Exploring
-          </Link>
+          </GradientButton>
         </motion.div>
 
       </section>
