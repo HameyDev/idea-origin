@@ -26,4 +26,14 @@ export const FamousDiscoveries = [
       "Enabled long-distance transmission of electric power, shaping the modern world of electricity.",
     image: "/ac-electricity.jpeg",
   },
+  {
+    id: "heliocentrism",
+    title: "Heliocentric Model",
+    by: "Galileo Galilei",
+    year: "1610",
+    description:
+      "Proved that Earth is not the center of the universe, revolutionizing astronomy and human thought.",
+    image: "/heliocentric-model.jpg",
+  },
+
 ];
