@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { HiOutlineFilter } from "react-icons/hi";
 import FilterSidebar from "../components/FilterSidebar";
 
+import FeaturedCard from "../components/FeaturedCard";
+
 /* =======================
    SCIENCE FIELDS
 ======================= */
@@ -215,48 +217,20 @@ export default function Explore() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 justify-items-center"
             >
-              {paginated.map((item) => (
-                <motion.div
-                  key={item.id}
-                  initial={{ scale: 0.96, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  exit={{ scale: 0.96, opacity: 0 }}
-                  transition={{ duration: 0.25 }}
-                  className="bg-slate-900/80 rounded-2xl p-5 shadow-xl border border-white/10
-                             h-[360px] flex flex-col justify-between"
-                >
-                  <div className="h-[140px] rounded-xl overflow-hidden">
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-
-                  <div>
-                    <h3 className="text-lg font-bold line-clamp-2">
-                      {item.title}
-                    </h3>
-
-                    <p className="text-cyan-400 text-sm">
-                      {item.scientist} • {item.year}
-                    </p>
-
-                    <p className="text-gray-300 text-sm mt-2 line-clamp-3">
-                      {item.desc}
-                    </p>
-                  </div>
-
-                  <Link
-                    to={`/discovery/${item.id}`}
-                    className="text-cyan-400 hover:text-emerald-400 text-sm font-medium"
-                  >
-                    Read Story →
-                  </Link>
-                </motion.div>
+              {paginated.map((sci) => (
+                <FeaturedCard
+                  key={sci.id}
+                  to={`/discovery/${sci.id}`}
+                  image={sci.image}
+                  title={sci.title}
+                  subtitle={sci.field}
+                  description={sci.desc}
+                  cta="View Profile →"
+                />
               ))}
+
             </motion.div>
           </AnimatePresence>
 

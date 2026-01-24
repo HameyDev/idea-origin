@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { HiOutlineFilter, HiX } from "react-icons/hi";
 import FilterSidebar from "../components/FilterSidebar";
 
+import FeaturedCard from "../components/FeaturedCard";
+
 
 
 
@@ -159,65 +161,82 @@ export default function Scientists() {
         {/* Mobile Sidebar */}
         <AnimatePresence>
           {sidebarOpen && (
-            <motion.div
-              initial={{ x: "-100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "-100%" }}
-              transition={{ duration: 0.3 }}
-              className="fixed inset-y-0 left-0 z-50 w-64 bg-slate-900/95 p-6 overflow-y-auto"
-            >
-              <button
+            <>
+              {/* BACKDROP */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm"
                 onClick={() => setSidebarOpen(false)}
-                className="mb-4 p-2 bg-slate-800 rounded-xl hover:bg-slate-700 transition"
-              >
-                <HiX className="w-6 h-6 text-white" />
-              </button>
+              />
 
-              <FilterSidebar
-                title="Filter by Field"
-                isOpen={sidebarOpen}
-                onClose={() => setSidebarOpen(false)}
+              {/* SIDEBAR */}
+              <motion.div
+                initial={{ x: "-100%" }}
+                animate={{ x: 0 }}
+                exit={{ x: "-100%" }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+                className="fixed inset-y-0 left-0 z-50 w-72 bg-slate-900 p-6 overflow-y-auto"
+                onClick={(e) => e.stopPropagation()} // ⛔ prevent closing when clicking inside
               >
-                {scienceFields.map((field) => (
-                  <label key={field} className="flex items-center gap-2 mb-2">
-                    <input
-                      type="checkbox"
-                      value={field}
-                      checked={selectedFields.includes(field)}
-                      onChange={handleFieldCheck}
-                      className="accent-cyan-400"
-                    />
-                    <span>{field}</span>
-                  </label>
-                ))}
-
                 <button
-                  onClick={() => {
-                    setSelectedFields([]);
-                    setSearch("");
-                    setPage(1);
-                    setSidebarOpen(false);
-                  }}
-                  className="mt-4 w-full p-3 rounded-xl bg-gradient-to-r
-               from-cyan-500 to-emerald-600
-               shadow-lg shadow-emerald-500/30
-               hover:scale-105 transition font-medium"
+                  onClick={() => setSidebarOpen(false)}
+                  className="mb-4 p-2 bg-slate-800 rounded-xl hover:bg-slate-700 transition"
                 >
-                  Clear Filters
+                  <HiX className="w-6 h-6 text-white" />
                 </button>
-              </FilterSidebar>
 
-            </motion.div>
+                <FilterSidebar
+                  title="Filter by Field"
+                  isOpen={sidebarOpen}
+                  onClose={() => setSidebarOpen(false)}
+                >
+                  {scienceFields.map((field) => (
+                    <label key={field} className="flex items-center gap-2 mb-2">
+                      <input
+                        type="checkbox"
+                        checked={selectedFields.includes(field)}
+                        onChange={() => handleFieldCheck(field)}
+                        className="accent-cyan-400"
+                      />
+                      <span>{field}</span>
+                    </label>
+                  ))}
+
+                  <button
+                    onClick={() => {
+                      setSearchParams({});
+                      setSidebarOpen(false);
+                    }}
+                    className="mt-4 w-full p-3 rounded-xl bg-gradient-to-r
+              from-cyan-500 to-emerald-600
+              shadow-lg shadow-emerald-500/30
+              hover:scale-105 transition font-medium"
+                  >
+                    Clear Filters
+                  </button>
+                </FilterSidebar>
+              </motion.div>
+            </>
           )}
         </AnimatePresence>
 
+
         {/* Main Grid */}
         <main className="flex-1">
-          <motion.div
-            layout
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 min-h-[800px] items-start"
-          >
-            <AnimatePresence mode="wait">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={page} // 🔥 THIS IS THE MAGIC
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4
+                 gap-12 min-h-[800px] items-start justify-items-center"
+            >
+
               {paginated.length === 0 && (
                 <motion.p
                   key="empty"
@@ -231,37 +250,20 @@ export default function Scientists() {
               )}
 
               {paginated.map((sci) => (
-                <motion.div
+                <FeaturedCard
                   key={sci.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.3 }}
-                  className="bg-slate-900 rounded-2xl p-5 cursor-pointer
-             hover:shadow-[0_0_25px_cyan] hover:shadow-cyan-400/70
-             transition-all duration-300 group"
-                >
-                  <Link to={`/scientist/${sci.id}`}>
-                    <div className="h-60 rounded-xl mb-4 overflow-hidden ">
-                      <img
-                        src={sci.image}
-                        alt={sci.name}
-                        className="h-full w-full object-cover group-hover:brightness-110 transition-all duration-300"
-                      />
-                    </div>
-                    <h3 className="text-xl font-semibold group-hover:text-cyan-400 transition-all duration-300">
-                      {sci.name}
-                    </h3>
-                    <p className="text-gray-400 mt-1 transition-all duration-300">
-                      {sci.field}
-                    </p>
-                  </Link>
-                </motion.div>
-
+                  to={`/scientist/${sci.id}`}
+                  image={sci.image}
+                  title={sci.name}
+                  subtitle={sci.field}
+                  description={sci.description || "Explore the life, discoveries, and legacy of this scientist."}
+                  cta="View Profile →"
+                />
               ))}
-            </AnimatePresence>
-          </motion.div>
 
+
+            </motion.div>
+          </AnimatePresence>
           {/* Pagination */}
           {totalPages > 1 && (
             <div className="flex justify-center items-center gap-6 mt-8">

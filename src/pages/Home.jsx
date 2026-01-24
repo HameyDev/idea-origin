@@ -46,7 +46,7 @@ export default function Home() {
             </GradientButton>
             <Link
               to="/timeline"
-              className="px-8 py-3 border border-cyan-400 rounded-xl text-cyan-400 hover:bg-cyan-400 hover:text-black transition"
+              className="px-12 py-4 border border-cyan-400 rounded-xl text-cyan-400 hover:bg-cyan-400 hover:text-black transition"
             >
               View Timeline
             </Link>
@@ -147,7 +147,7 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 justify-items-center">
           {FeaturedScientists.slice(0, 4).map((sci) => (
             <FeaturedCard
               key={sci.id}
@@ -170,13 +170,18 @@ export default function Home() {
       {/* FEATURED DISCOVERIES */}
       <section className="py-28 bg-slate-900">
 
-        <h2 className="text-4xl font-extrabold text-center mb-12">
-          Famous{" "}
-          <span className="bg-gradient-to-r from-cyan-400 to-emerald-400
-                     bg-clip-text text-transparent">
-            Discoveries
-          </span>
-        </h2>
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-extrabold">
+            Famouse{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-emerald-400">
+              Discoveries
+            </span>
+          </h2>
+
+          <p className="mt-4 text-gray-400 max-w-2xl mx-auto">
+            Breakthrough moments that revolutionized knowledge and changed the course of human history.
+          </p>
+        </div>
 
         <div className="max-w-7xl mx-auto grid sm:grid-cols-2 lg:grid-cols-4 gap-10 px-6">
           {FamousDiscoveries.slice(0, 4).map((d) => (
@@ -196,22 +201,41 @@ export default function Home() {
 
 
       {/* FINAL CTA */}
-      <section className="py-32 text-center bg-gradient-to-b from-slate-900 to-slate-950">
-        <h2 className="text-5xl font-extrabold">
-          Start Exploring{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-emerald-400">
-            Ideas
-          </span>
-        </h2>
+      <section className="relative py-36 text-center overflow-hidden">
 
-        <p className="mt-6 text-gray-300 max-w-xl mx-auto text-lg">
-          Learn science through stories — not boring formulas.
-        </p>
+        {/* Background Glow */}
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-900 via-slate-950 to-black" />
+        <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[700px] h-[700px]
+                  bg-cyan-400/10 blur-[140px] rounded-full" />
+        <div className="absolute -bottom-40 left-1/2 -translate-x-1/2 w-[600px] h-[600px]
+                  bg-emerald-400/10 blur-[160px] rounded-full" />
 
-        <GradientButton to="/explore-discovery" className="mt-10">
-          Begin Journey
-        </GradientButton>
+        {/* Content */}
+        <div className="relative z-10 max-w-3xl mx-auto px-6">
+
+          <h2 className="text-5xl md:text-6xl font-extrabold leading-tight">
+            Begin Your Journey <br />
+            Into{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r
+                       from-cyan-400 to-emerald-400">
+              Great Ideas
+            </span>
+          </h2>
+
+          <p className="mt-8 text-gray-300 text-lg leading-relaxed max-w-2xl mx-auto">
+            Discover science through real stories, the curiosity, the failures,
+            and the breakthroughs that changed the world forever.
+          </p>
+
+          <div className="mt-12 flex justify-center gap-6 flex-wrap">
+            <GradientButton to="/explore-discovery">
+              Start Exploring
+            </GradientButton>
+          </div>
+
+        </div>
       </section>
+
 
     </div >
   );

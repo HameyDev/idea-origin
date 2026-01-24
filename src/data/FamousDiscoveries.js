@@ -6,7 +6,7 @@ export const FamousDiscoveries = [
     year: "1905",
     description:
       "Transformed our understanding of space, time, and gravity. A cornerstone of modern physics.",
-    image: "/theory-of-relativity.jpg",
+    image: "/discoveries/theory-of-relativity.jpg",
   },
   {
     id: "gravity",
@@ -15,7 +15,7 @@ export const FamousDiscoveries = [
     year: "1687",
     description:
       "Defined the motion of planets, objects on Earth, and laid the foundation for classical mechanics.",
-    image: "law-of-gravity.jpg",
+    image: "/discoveries/law-of-gravity.jpg",
   },
   {
     id: "ac",
@@ -24,7 +24,7 @@ export const FamousDiscoveries = [
     year: "1893",
     description:
       "Enabled long-distance transmission of electric power, shaping the modern world of electricity.",
-    image: "/ac-electricity.jpeg",
+    image: "/discoveries/ac-electricity.jpeg",
   },
   {
     id: "heliocentrism",
@@ -33,7 +33,7 @@ export const FamousDiscoveries = [
     year: "1610",
     description:
       "Proved that Earth is not the center of the universe, revolutionizing astronomy and human thought.",
-    image: "/heliocentric-model.jpg",
+    image: "/discoveries/heliocentric.jpeg",
   },
 
 ];

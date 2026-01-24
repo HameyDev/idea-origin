@@ -49,7 +49,7 @@ export default function Navbar() {
           <NavLink to="/about">About</NavLink>
           <NavLink to="/auth">Login</NavLink>
 
-          <GradientButton to="/explore-discovery" className="">
+          <GradientButton to="/dashboard" className="">
             Dashboard
           </GradientButton>
 

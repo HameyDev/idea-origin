@@ -17,14 +17,16 @@ export default function FeaturedCard({
     >
       <Link
         to={to}
-        className="block relative bg-slate-950 rounded-3xl overflow-hidden
+        className="block w-[240px] h-[380px] relative
+                   bg-slate-950 rounded-3xl overflow-hidden
                    border border-white/10
                    hover:border-cyan-400
                    hover:shadow-[0_0_35px_rgba(34,211,238,0.35)]
-                   transition-all duration-300"
+                   transition-all duration-300
+                   flex flex-col"
       >
         {/* IMAGE */}
-        <div className="relative h-56 overflow-hidden">
+        <div className="relative h-[160px] overflow-hidden shrink-0">
           <img
             src={image}
             alt={title}
@@ -37,25 +39,30 @@ export default function FeaturedCard({
         </div>
 
         {/* CONTENT */}
-        <div className="relative p-6">
-          <h3 className="text-xl font-bold text-white
-                         group-hover:text-cyan-400 transition">
-            {title}
-          </h3>
+        <div className="flex-1 p-5 flex flex-col justify-between">
+          <div>
+            <h3
+              className="text-lg w-full font-bold text-white
+                         truncate
+                         group-hover:text-cyan-400 transition"
+              title={title}
+            >
+              {title}
+            </h3>
 
-          {subtitle && (
-            <p className="text-emerald-400 text-sm mt-1">
-              {subtitle}
+            {subtitle && (
+              <p className="text-emerald-400 text-sm mt-1 truncate">
+                {subtitle}
+              </p>
+            )}
+
+            <p className="text-gray-400 mt-3 text-sm leading-relaxed line-clamp-3">
+              {description}
             </p>
-          )}
+          </div>
 
-          <p className="text-gray-400 mt-3 text-sm leading-relaxed line-clamp-3">
-            {description}
-          </p>
-
-          <span className="inline-block mt-5 text-cyan-400
-                           group-hover:text-emerald-400
-                           font-medium text-sm">
+          <span className="text-cyan-400 group-hover:text-emerald-400
+                           font-medium text-sm mt-4">
             {cta}
           </span>
         </div>

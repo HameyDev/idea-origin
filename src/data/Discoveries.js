@@ -7,7 +7,7 @@ export const discoveries = [
     field: "Physics",
     year: 1905,
     desc: "A revolutionary idea that changed how we see space and time.",
-    image: "/theory-of-relativity.jpg",
+    image: "/discoveries/theory-of-relativity.jpg",
   },
 
   {
@@ -18,7 +18,7 @@ export const discoveries = [
     field: "Physics",
     year: 1687,
     desc: "The force that governs motion of planets and objects.",
-    image: "/law-of-gravity.jpg",
+    image: "/discoveries/law-of-gravity.jpg",
   },
 
   {
@@ -29,7 +29,7 @@ export const discoveries = [
     field: "Physics",
     year: 1890,
     desc: "The system that powers our modern world.",
-    image: "/ac-electricity.jpeg",
+    image: "/discoveries/ac-electricity.jpeg",
   },
 
   {
@@ -40,7 +40,7 @@ export const discoveries = [
     field: "Medicine",
     year: 1928,
     desc: "The discovery that changed medicine forever.",
-    image: "/penicillin.jpg",
+    image: "/discoveries/penicillin.jpg",
   },
 
   {
@@ -95,7 +95,7 @@ export const discoveries = [
     field: "Astronomy",
     year: 1543,
     desc: "The Sun, not Earth, is the center of the solar system.",
-    image: "/heliocentric.jpg",
+    image: "/discoveries/heliocentric.jpeg",
   },
 
   {
