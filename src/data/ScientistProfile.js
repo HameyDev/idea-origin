@@ -2,250 +2,194 @@ export const scientistsProfile = {
   einstein: {
     id: "einstein",
     name: "Albert Einstein",
-    primaryField: "Physics",
+    tagline: "The man who bent time, space, and reality",
     field: "Theoretical Physics",
-    born: 1879,
-    died: 1955,
-    era: "Modern Physics",
-    nationality: "German",
-    bio: "Albert Einstein revolutionized physics with his theory of relativity, reshaping our understanding of space, time, and energy.",
+    era: "20th Century",
+    nationality: "German / Swiss / American",
+
     image: "/scientists/einstein.jpeg",
 
-    discoveries: [
-      { id: "relativity", title: "Theory of Relativity", year: 1905 },
-      { id: "photoelectric", title: "Photoelectric Effect", year: 1905 },
+    born: "14 March 1879, Ulm, Germany",
+    died: "18 April 1955, Princeton, USA",
+
+    bio: "Albert Einstein reshaped humanity’s understanding of space, time, and gravity through revolutionary ideas.",
+
+    story: [
+      "Einstein was not a child prodigy. He spoke late and struggled in traditional schools.",
+      "In 1905, while working as a patent clerk, he published four papers that changed physics forever.",
+      "His theories challenged Newtonian mechanics and redefined reality itself.",
     ],
 
-    achievements: [
-      "Nobel Prize in Physics (1921)",
-      "Developed E = mc²",
-      "Unified space and time",
+    discoveries: [
+      { id: "special-relativity", title: "Special Relativity", year: "1905" },
+      { id: "general-relativity", title: "General Relativity", year: "1915" },
+      { id: "photoelectric", title: "Photoelectric Effect", year: "1905" },
+    ],
+
+    impact: [
+      "Foundation of modern physics",
+      "Enabled GPS technology",
+      "Predicted black holes and gravitational waves",
     ],
 
     quotes: [
       "Imagination is more important than knowledge.",
-      "Life is like riding a bicycle.",
+      "God does not play dice with the universe.",
     ],
 
     funFacts: [
-      "Loved playing the violin",
-      "Refused presidency of Israel",
+      "He never wore socks.",
+      "He was offered the presidency of Israel.",
     ],
   },
 
   tesla: {
     id: "tesla",
     name: "Nikola Tesla",
-    primaryField: "Engineering",
+    tagline: "The visionary who powered the modern world",
     field: "Electrical Engineering",
-    born: 1856,
-    died: 1943,
     era: "Industrial Age",
     nationality: "Serbian-American",
-    bio: "Nikola Tesla was a visionary inventor who shaped modern electricity with AC power systems.",
+
     image: "/scientists/tesla.jpeg",
 
-    discoveries: [
-      { id: "ac", title: "AC Electricity", year: 1890 },
-      { id: "wireless", title: "Wireless Energy", year: 1893 },
+    born: "10 July 1856, Smiljan",
+    died: "7 January 1943, New York",
+
+    bio: "Nikola Tesla was a visionary inventor whose ideas shaped modern electricity and wireless technology.",
+
+    story: [
+      "Tesla possessed a photographic memory and powerful imagination.",
+      "He worked with Edison before becoming his greatest rival.",
+      "Despite changing the world, he died poor and misunderstood.",
     ],
 
-    achievements: [
-      "Developed AC power system",
-      "Over 300 patents",
-      "Predicted radio technology",
+    discoveries: [
+      { id: "ac", title: "Alternating Current (AC)", year: "1890" },
+      { id: "wireless", title: "Wireless Energy Transmission", year: "1893" },
+    ],
+
+    impact: [
+      "Modern power grids",
+      "Wireless communication concepts",
+      "Electric motors and generators",
     ],
 
     quotes: [
-      "The future is mine.",
-      "Think in terms of energy and vibration.",
+      "If you want to find the secrets of the universe, think in terms of energy.",
     ],
 
-    funFacts: [
-      "Had photographic memory",
-      "Never married",
-    ],
+    funFacts: ["Never married", "Loved pigeons"],
   },
 
   newton: {
     id: "newton",
     name: "Isaac Newton",
-    primaryField: "Physics",
-    field: "Mathematics & Physics",
-    born: 1643,
-    died: 1727,
-    era: "Classical Physics",
+    tagline: "The architect of classical physics",
+    field: "Physics & Mathematics",
+    era: "Scientific Revolution",
     nationality: "English",
-    bio: "Isaac Newton laid the foundation of classical physics and modern mathematics.",
+
     image: "/scientists/newton.jpeg",
 
-    discoveries: [
-      { id: "gravity", title: "Law of Gravity", year: 1687 },
-      { id: "motion", title: "Laws of Motion", year: 1687 },
+    born: "25 December 1643, England",
+    died: "20 March 1727, England",
+
+    bio: "Isaac Newton laid the foundations of classical mechanics, optics, and calculus.",
+
+    story: [
+      "Newton grew up during political and scientific upheaval.",
+      "He formulated his greatest ideas during isolation from the plague.",
+      "His work dominated science for over 200 years.",
     ],
 
-    achievements: [
-      "President of the Royal Society",
-      "Knighted by Queen Anne",
-      "Published Principia",
+    discoveries: [
+      { id: "gravity", title: "Law of Universal Gravitation", year: "1687" },
+      { id: "motion", title: "Laws of Motion", year: "1687" },
+    ],
+
+    impact: [
+      "Classical mechanics",
+      "Engineering and space science",
+      "Mathematics foundations",
     ],
 
     quotes: [
-      "Standing on the shoulders of giants.",
-      "What we know is a drop.",
+      "If I have seen further it is by standing on the shoulders of giants.",
     ],
 
-    funFacts: [
-      "Practiced alchemy",
-      "Never married",
-    ],
+    funFacts: ["Practiced alchemy", "Never married"],
   },
 
   curie: {
     id: "curie",
     name: "Marie Curie",
-    primaryField: "Chemistry",
-    field: "Chemistry & Physics",
-    born: 1867,
-    died: 1934,
+    tagline: "The woman who unlocked invisible energy",
+    field: "Physics & Chemistry",
     era: "Modern Science",
     nationality: "Polish-French",
-    bio: "Marie Curie pioneered research on radioactivity and became the first woman to win a Nobel Prize.",
+
     image: "/scientists/marie-curie.jpeg",
 
+    born: "7 November 1867, Poland",
+    died: "4 July 1934, France",
+
+    bio: "Marie Curie pioneered research on radioactivity and became the first person to win two Nobel Prizes.",
+
+    story: [
+      "Curie faced discrimination as a woman in science.",
+      "She discovered two new elements despite extreme hardship.",
+      "Her work transformed medicine and physics.",
+    ],
+
     discoveries: [
-      { id: "radium", title: "Radium", year: 1898 },
-      { id: "polonium", title: "Polonium", year: 1898 },
+      { id: "radium", title: "Radium", year: "1898" },
+      { id: "polonium", title: "Polonium", year: "1898" },
     ],
 
-    achievements: [
-      "Two Nobel Prizes",
-      "First female professor at Sorbonne",
-    ],
+    impact: ["Cancer treatment", "Nuclear physics", "Medical imaging"],
 
-    quotes: [
-      "Nothing in life is to be feared.",
-    ],
+    quotes: ["Nothing in life is to be feared, it is only to be understood."],
 
-    funFacts: [
-      "Her notebooks are still radioactive",
-    ],
+    funFacts: ["Her notebooks are still radioactive."],
   },
 
   darwin: {
     id: "darwin",
     name: "Charles Darwin",
-    primaryField: "Biology",
+    tagline: "The thinker who explained life itself",
     field: "Biology",
-    born: 1809,
-    died: 1882,
     era: "Natural Sciences",
     nationality: "English",
-    bio: "Charles Darwin developed the theory of evolution by natural selection.",
+
     image: "/scientists/darwin.jpeg",
 
-    discoveries: [
-      { id: "evolution", title: "Theory of Evolution", year: 1859 },
+    born: "12 February 1809, England",
+    died: "19 April 1882, England",
+
+    bio: "Charles Darwin developed the theory of evolution by natural selection.",
+
+    story: [
+      "Darwin traveled the world aboard HMS Beagle.",
+      "Years of observation led to a radical theory.",
+      "His ideas changed biology forever.",
     ],
 
-    achievements: [
-      "Published On the Origin of Species",
+    discoveries: [
+      { id: "evolution", title: "Theory of Evolution", year: "1859" },
+    ],
+
+    impact: [
+      "Modern biology",
+      "Genetics and medicine",
+      "Understanding of life",
     ],
 
     quotes: [
-      "A man who dares to waste one hour of time...",
+      "A man who dares to waste one hour of time has not discovered the value of life.",
     ],
 
-    funFacts: [
-      "Loved collecting beetles",
-    ],
-  },
-
-  galileo: {
-    id: "galileo",
-    name: "Galileo Galilei",
-    primaryField: "Astronomy",
-    field: "Astronomy",
-    born: 1564,
-    died: 1642,
-    era: "Scientific Revolution",
-    nationality: "Italian",
-    bio: "Galileo supported the heliocentric model and transformed astronomy with telescopic discoveries.",
-    image: "/scientists/Galileo.jpeg",
-
-    discoveries: [
-      { id: "moons", title: "Moons of Jupiter", year: 1610 },
-    ],
-
-    achievements: [
-      "Father of modern science",
-    ],
-
-    quotes: [
-      "And yet it moves.",
-    ],
-
-    funFacts: [
-      "Was placed under house arrest",
-    ],
-  },
-
-  faraday: {
-    id: "faraday",
-    name: "Michael Faraday",
-    primaryField: "Physics",
-    field: "Physics",
-    born: 1791,
-    died: 1867,
-    era: "Electromagnetism Era",
-    nationality: "English",
-    bio: "Michael Faraday discovered electromagnetic induction, shaping modern electricity.",
-    image: "/scientists/faraday.jpeg",
-
-    discoveries: [
-      { id: "induction", title: "Electromagnetic Induction", year: 1831 },
-    ],
-
-    achievements: [
-      "Father of the electric motor",
-    ],
-
-    quotes: [
-      "Nothing is too wonderful to be true.",
-    ],
-
-    funFacts: [
-      "Had little formal education",
-    ],
-  },
-
-  mendel: {
-    id: "mendel",
-    name: "Gregor Mendel",
-    primaryField: "Biology",
-    field: "Genetics",
-    born: 1822,
-    died: 1884,
-    era: "Genetics Foundation",
-    nationality: "Austrian",
-    bio: "Gregor Mendel discovered the basic laws of inheritance.",
-    image: "https://upload.wikimedia.org/wikipedia/commons/2/26/Gregor_Mendel.jpg",
-
-    discoveries: [
-      { id: "genetics", title: "Laws of Inheritance", year: 1866 },
-    ],
-
-    achievements: [
-      "Father of Genetics",
-    ],
-
-    quotes: [
-      "My scientific studies...",
-    ],
-
-    funFacts: [
-      "Was a monk",
-    ],
+    funFacts: ["Loved collecting beetles"],
   },
 
   // (Edison, Bohr, Turing, Lovelace, Hawking, Pasteur follow same pattern)

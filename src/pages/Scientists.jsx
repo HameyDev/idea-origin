@@ -7,9 +7,6 @@ import FilterSidebar from "../components/FilterSidebar";
 
 import FeaturedCard from "../components/FeaturedCard";
 
-
-
-
 const scienceFields = [
   "Physics",
   "Chemistry",
@@ -39,6 +36,8 @@ const scienceFields = [
 export default function Scientists() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
+  
+
 
   const itemsPerPage = 8;
 
@@ -79,27 +78,23 @@ export default function Scientists() {
   const start = (page - 1) * itemsPerPage;
   const paginated = filtered.slice(start, start + itemsPerPage);
 
+  const animationKey = `${page}-${search}-${selectedFields.join("|")}`;
+
   return (
     <div className="bg-slate-950 text-white min-h-screen px-4 sm:px-6 lg:px-10 py-10">
-      {/* Header */}
-      <div className="max-w-6xl mx-auto mb-6 flex flex-col items-center">
-        <motion.h1
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-4xl font-bold text-center lg:text-left"
-        >
+      {/* ================= HEADER ================= */}
+      <motion.section
+        initial={{ opacity: 0, y: -30 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="text-center mb-10"
+      >
+        <h1 className="text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-emerald-400">
           All Scientists
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
-          className="text-gray-400 mt-2 text-center lg:text-left"
-        >
+        </h1>
+        <p className="mt-4 text-gray-400 max-w-3xl mx-auto">
           Discover the great minds of history.
-        </motion.p>
-      </div>
+        </p>
+      </motion.section>
 
       {/* Search + Filter Icon (Mobile) */}
       <div className="flex items-center gap-4 max-w-7xl mx-auto mb-6">
@@ -107,9 +102,7 @@ export default function Scientists() {
           type="text"
           placeholder="Search scientist..."
           value={search}
-          onChange={(e) =>
-            updateParams({ search: e.target.value, page: 1 })
-          }
+          onChange={(e) => updateParams({ search: e.target.value, page: 1 })}
           className="flex-1 p-4 rounded-xl bg-slate-800 outline-none focus:ring-2 focus:ring-indigo-500"
         />
 
@@ -144,9 +137,7 @@ export default function Scientists() {
           ))}
 
           <button
-            onClick={() =>
-              setSearchParams({})
-            }
+            onClick={() => setSearchParams({})}
             className="mt-4 w-full p-3 rounded-xl bg-gradient-to-r
                from-cyan-500 to-emerald-600
                shadow-lg shadow-emerald-500/30
@@ -156,10 +147,8 @@ export default function Scientists() {
           </button>
         </FilterSidebar>
 
-
-
         {/* Mobile Sidebar */}
-        <AnimatePresence>
+        <AnimatePresence mode="wait">
           {sidebarOpen && (
             <>
               {/* BACKDROP */}
@@ -223,12 +212,11 @@ export default function Scientists() {
           )}
         </AnimatePresence>
 
-
         {/* Main Grid */}
         <main className="flex-1">
           <AnimatePresence mode="wait">
             <motion.div
-              key={page} // 🔥 THIS IS THE MAGIC
+              key={animationKey} // 🔥 THIS IS THE MAGIC
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -236,7 +224,6 @@ export default function Scientists() {
               className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4
                  gap-12 min-h-[800px] items-start justify-items-center"
             >
-
               {paginated.length === 0 && (
                 <motion.p
                   key="empty"
@@ -256,12 +243,13 @@ export default function Scientists() {
                   image={sci.image}
                   title={sci.name}
                   subtitle={sci.field}
-                  description={sci.description || "Explore the life, discoveries, and legacy of this scientist."}
+                  description={
+                    sci.description ||
+                    "Explore the life, discoveries, and legacy of this scientist."
+                  }
                   cta="View Profile →"
                 />
               ))}
-
-
             </motion.div>
           </AnimatePresence>
           {/* Pagination */}

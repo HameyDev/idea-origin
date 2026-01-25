@@ -113,6 +113,8 @@ export default function Explore() {
   const start = (page - 1) * itemsPerPage;
   const paginated = filtered.slice(start, start + itemsPerPage);
 
+  const animationKey = `${page}-${search}-${selectedFields.join("|")}`;
+
   return (
     <div className="bg-gradient-to-b from-black via-[#14132A] to-black text-white min-h-screen px-4 lg:px-10 py-10">
 
@@ -212,7 +214,7 @@ export default function Explore() {
         <main className="flex-1">
           <AnimatePresence mode="wait">
             <motion.div
-              key={page}
+              key={animationKey}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -235,7 +237,7 @@ export default function Explore() {
           </AnimatePresence>
 
           {totalPages > 1 && (
-            <div className="flex justify-center gap-6 mt-16">
+            <div className="flex justify-center items-center gap-6 mt-16">
               <button
                 disabled={page === 1}
                 onClick={() => updateParams({ page: page - 1 })}

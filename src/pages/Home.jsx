@@ -168,7 +168,7 @@ export default function Home() {
 
 
       {/* FEATURED DISCOVERIES */}
-      <section className="py-28 bg-slate-900">
+      <section className="py-28 bg-slate-900 justify-items-center">
 
         <div className="text-center mb-16">
           <h2 className="text-4xl font-extrabold">
